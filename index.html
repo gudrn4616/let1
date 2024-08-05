@@ -48,46 +48,51 @@
   </head>
   <body>
     <div class="container-fluid">
-      <!-- 상단 섹션 (3/4) -->
       <div class="top-section">
-        
-        <div class="card" style="width: 18rem">
-          <a href="https://www.naver.com">
-              <img src="..." class="card-img-top" alt="..." />
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk
-              of the card's content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="">
         <div class="intro-text">
         <h2>안녕하세요, 저희 팀을 소개합니다!</h2>
         <p>우리는 열정적이고 창의적인 개발자들로 구성된 팀입니다. 함께 성장하고 혁신적인 솔루션을 만들어가고 있습니다.</p>
       </div>
       </div>
       
-      
-      <!-- 하단 섹션 (2/3) -->
-      <div class="bottom-section d-flex justify-content-center align-items-center">
-        <div class="card" style="width: 18rem">
-          <a href="https://www.naver.com">
-              <img src="..." class="card-img-top" alt="..." />
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk
-              of the card's content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+      <div class="bottom-section d-flex justify-content-center align-items-center" id="cardContainer">
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      // 팀원 데이터
+      const teamMembers = [
+        {name: "이승환", position: "팀장", mbti: "ISTJ", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+        {name: "류재준", position: "부팀장", mbti: "INTP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+        {name: "문진수", position: "팀원", mbti: "ISTP", hobby: "코딩", link: "https://velog.io/@mjs/안녕하세요-저를-소개하겠습니다", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+        {name: "허석재", position: "팀원", mbti: "INFP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+        {name: "김형구", position: "팀원", mbti: "ISTP", hobby: "코딩", link: "./kimhyunggu", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+      ];
+
+      // 카드 컨테이너 요소 가져오기
+      const cardContainer = document.getElementById('cardContainer');
+
+      // 각 팀원에 대해 카드 생성
+      teamMembers.forEach(member => {
+        const cardTemplate = `
+          <div class="card" style="width: 18rem;">
+            <a href="${member.link}">
+              <img src="${member.img}" class="card-img-top" alt="${member.name}의 이미지" />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">${member.name}</h5>
+              <p class="card-text">직급: ${member.position}</p>
+              <p class="card-text">MBTI: ${member.mbti}</p>
+              <p class="card-text">자기 소개: ${member.hobby}</p>
+            </div>
+          </div>
+        `;
+        const card = document.createElement('div');
+        card.innerHTML = cardTemplate;
+
+        cardContainer.appendChild(card);
+      });
+    </script>
   </body>
 </html>

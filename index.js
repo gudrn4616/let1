@@ -1,11 +1,26 @@
 var express = require('express');
-var app = express();
+var fs = require('fs');
 var path = require('path');
+var app = express();
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
-var main = require('./main');
 
 app.get('/', function(req, res) {
-    res.send(main());
+    var html = path.join(__dirname, 'index.html');
+    fs.readFile(html, 'utf8', function(err, data) {
+        res.send(data);
+    });
+});
+
+app.get('/kimhyunggu', function(req, res) {
+    
+    var introductionPath = path.join(__dirname, '자기소개.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 app.listen(3000, function() {
