@@ -66,7 +66,7 @@ const index1 = () => {
     let teamlist = [
         {name: "이승환", position: "팀장", mbti: "ISTJ", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
         {name: "류재준", position: "부팀장", mbti: "INTP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
-        {name: "문진수", position: "팀원", mbti: "ISTP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
+        {name: "문진수", position: "팀원", mbti: "ISTP", hobby: "코딩", link: "https://velog.io/@mjs/안녕하세요-저를-소개하겠습니다", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
         {name: "허석재", position: "팀원", mbti: "INFP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
         {name: "김형구", position: "팀원", mbti: "ISTP", hobby: "코딩", link: "https://www.naver.com", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"},
     ]
