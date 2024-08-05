@@ -1,0 +1,17 @@
+{
+  "name": "let1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.19.2",
+    "i": "^0.3.7",
+    "npm": "^10.8.2"
+  },
+  "description": ""
+}
