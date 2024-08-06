@@ -5,9 +5,13 @@ var app = express();
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
 app.get('/', function(req, res) {
-    var html = path.join(__dirname, 'index.html');
-    fs.readFile(html, 'utf8', function(err, data) {
-        res.send(data);
+    var indexhtml = path.join(__dirname, 'index.html');
+    fs.readFile(indexhtml, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
     });
 });
 
