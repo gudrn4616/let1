@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>김형구의 자기소개</title>
     <style>
+      /* 기본 스타일 설정 */
       body {
         font-family: "Nanum Gothic", sans-serif;
         line-height: 1.6;
@@ -31,6 +32,7 @@
         height: 200px;
         border-radius: 50%;
       }
+      /* 반응형 이미지 크기 조정 */
       @media (max-width: 768px) {
         img {
           width: 150px;
@@ -68,9 +70,19 @@
         background-color: #ddd;
         color: black;
       }
+      .info-box {
+        border: 2px solid #333;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: transparent;
+      }
+      .info-box h2 {
+        margin: 0;
+      }
     </style>
   </head>
   <body>
+    <!-- 네비게이션 바 -->
     <nav class="navbar">
       <a class="nav-link active" aria-current="page" href="./">홈</a>
     </nav>
@@ -81,14 +93,16 @@
         alt="김형구 프로필 사진"
       />
 
-      <div class="section" id="info">
+      <!-- 기본 정보 섹션 -->
+      <div class="section info-box" id="info">
         <h2>기본 정보</h2>
         <p>이름: 김형구</p>
         <p>직급: 팀원</p>
         <p>MBTI: ISTP</p>
       </div>
 
-      <div class="section" id="intro">
+      <!-- 자기소개 섹션 -->
+      <div class="section info-box" id="intro">
         <h2>자기소개</h2>
         <p>
           안녕하세요! 저는 열정적인 개발자 김형구입니다. 코딩을 좋아하며, 새로운
@@ -98,7 +112,8 @@
         </p>
       </div>
 
-      <div class="section" id="hobby">
+      <!-- 취미 섹션 -->
+      <div class="section info-box" id="hobby">
         <h2>취미</h2>
         <p>
           제 주요 취미는 게임입니다. 특히 전략 게임과 MMORPG를 즐겨 합니다.
@@ -106,7 +121,8 @@
         </p>
       </div>
 
-      <div class="section" id="contact">
+      <!-- 연락처 섹션 -->
+      <div class="section info-box" id="contact">
         <h2>연락처</h2>
         <p>이메일1: gudrn8293@naver.com</p>
         <p>이메일2: gudrn4616@gmail.com</p>
