@@ -145,6 +145,6 @@ app.put('/api/guestbook/:id', (req, res) => {
 });
 
 // 서버를 3000번 포트에서 실행
-app.listen(3000, function() {
-    console.log('서버가 3000번 포트에서 실행 중입니다.');
+app.listen(5000, ()=> {
+    console.log('서버가 5000번 포트에서 실행 중입니다.');
 });

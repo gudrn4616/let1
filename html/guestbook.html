@@ -86,17 +86,28 @@
         #delete-edit-buttons {
             display: flex;
             justify-content: right;
+            margin-top: 10px;
         }
         #delete-button {
             margin-right: 10px;
+        }
+        .entry-box {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #333;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
     </style>
 </head>
 <body>
     <!-- 네비게이션 바 -->
     <div class="navbar">
-        <a href="./">홈</a>
-        <a href="./guestbook">방명록</a>
+        <a class="nav-link active" aria-current="page" href="./">홈</a>
+        <a class="nav-link active" aria-current="page" href="./guestbook">방명록</a>
     </div>
     <div class="container">
         <h1>방명록</h1>
@@ -154,8 +165,8 @@
                         const li = document.createElement('li'); // 새로운 'li' 요소를 만듭니다.
                         li.className = 'entry'; // 'entry' 클래스를 추가합니다.
                         // 항목의 이름과 메시지를 포함한 HTML을 설정합니다.
-                        li.innerHTML = `<div>
-                            ${entry.name}: ${entry.message}
+                        li.innerHTML = `<div class="entry-box">
+                            <strong>${entry.name}</strong><p>${entry.message}</p>
                             </div>
                             <div id="delete-edit-buttons">
                                 <button onclick="deleteEntry(${entry.id})" id="delete-button">삭제</button>
