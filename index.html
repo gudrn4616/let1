@@ -63,6 +63,30 @@
         background-color: #ddd;
         color: black;
       }
+      #cardContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nodejs-logo {
+        max-width: 100%;
+        height: auto;
+        width: 400px;
+      }
+      @media (max-width: 768px) {
+        #cardContainer {
+          flex-direction: column;
+          align-items: center;
+        }
+        .nodejs-logo {
+          width: 150px;
+        }
+      }
+      @media (max-width: 480px) {
+        .nodejs-logo {
+          width: 100px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -72,7 +96,7 @@
     </nav>
     <div class="container-fluid">
       <div class="top-section">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js 로고">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js 로고" class="nodejs-logo">
         <div class="intro-text">
         <h2>안녕하세요, 저희 팀을 소개합니다!</h2>
         <p>우리는 열정적이고 창의적인 개발자들로 구성된 팀입니다. 함께 성장하고 혁신적인 솔루션을 만들어가고 있습니다.</p>
