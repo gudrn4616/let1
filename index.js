@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/kimhyunggu', function(req, res) {
+app.get('/Kim', function(req, res) {
     
     var introductionPath = path.join(__dirname, 'html/자기소개.html');
     fs.readFile(introductionPath, 'utf8', function(err, data) {
@@ -29,6 +29,17 @@ app.get('/kimhyunggu', function(req, res) {
 
 app.get('/Heo', function(req, res) {
     var introductionPath = path.join(__dirname, 'html/Heo.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+app.get('/Mun', function(req, res) {
+    var introductionPath = path.join(__dirname, 'html/Mun.html');
     fs.readFile(introductionPath, 'utf8', function(err, data) {
         if (err) {
             res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
