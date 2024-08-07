@@ -204,11 +204,11 @@
         const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
         const weatherTemp = data['main']['temp']; // 온도
 
-        if(weatherDescription.includes("비"))
-        {
-          weatherDescription = '비';
-        }
-
+        
+      if(weatherDescription.includes("비"))
+      {
+        weatherDescription = '비';
+      }
 
         const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
         const weatherHTML = `
