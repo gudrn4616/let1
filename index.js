@@ -15,8 +15,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/kimhyunggu', function(req, res) {
-    
+app.get('/Kim', function(req, res) {
     var introductionPath = path.join(__dirname, 'html/자기소개.html');
     fs.readFile(introductionPath, 'utf8', function(err, data) {
         if (err) {

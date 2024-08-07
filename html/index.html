@@ -13,6 +13,8 @@
     <style>
       .card {
         margin: 10px;
+        width: 18rem; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
       html, body {
         height: 100%;
@@ -146,7 +148,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "잘 참여 하겠습니다!",
-          link: "Mun.html",
+          link: "/Mun",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/8-387-55-63.png",
           bloglink: "https://velog.io/@mjs/posts"
         },
@@ -155,7 +157,7 @@
           position: "팀원",
           mbti: "INFP",
           hobby: "기초부터 차근차근!",
-          link: "Heo.html",
+          link: "/Heo",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/2-409-21-82.png",
           bloglink: "https://eerr0886.tistory.com/"
         },
@@ -164,7 +166,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "열심히 하겠습니다.",
-          link: "자기소개.html",
+          link: "/Kim",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/1-283-41-331.png",
           bloglink: "https://gudrn8293.tistory.com/" 
         }
@@ -174,7 +176,7 @@
 
       teamMembers.forEach(member => {
         const cardTemplate = `
-          <div class="card" style="width: 18rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+          <div class="card">
             <a href="${member.link}">
               <img src="${member.img}" class="card-img-top" alt="${member.name}의 이미지" />
             </a>
