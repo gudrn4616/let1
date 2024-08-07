@@ -199,27 +199,34 @@
       const apiKey = '8b161e0472aad65a860b7a5f202b1359';
       const apiurl = `https://api.openweathermap.org/data/2.5/weather?lat=${Seoul_lat}&lon=${Seoul_lon}&lang=kr&units=metric&appid=${apiKey}`;
 
-      $.getJSON(apiurl, function(data) {
+      fetch(apiurl)
+      .then(response => response.json())
+      .then(data => {
         let weatherDescription = data['weather'][0]['description']; // 날씨 상태
         const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
         const weatherTemp = data['main']['temp']; // 온도
 
-        if(weatherDescription.includes("비"))
-        {
-          weatherDescription = '비';
-        }
+        // 추가될 예정 명확하게 날씨 상태를 나타내기위해 조건문 추가
+        const description = {
+          '비': '비',
+          '아지랑이': '맑음',
+          '구름': '구름낀 하늘'
+        };
+        Object.keys(description).forEach(key => {
+          if (weatherDescription.includes(key)) {
+            weatherDescription = description[key];
+          }
+        });
 
-
-        const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+        const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
         const weatherHTML = `
           <img src="${iconURL}" alt="Weather Icon" class="weather-icon">
           <span>${weatherTemp}°C</span>
-          <span>&nbsp현재상태: ${weatherDescription}</span>
+          <span>&nbsp현재날씨 : ${weatherDescription}</span>
         `;
+
         $('#weatherInfo').append(weatherHTML);
-      }).fail(function(error) {
-        console.log('Error:', error);
-      });
+      }).catch(error => console.log('날씨정보Error:', error));
     </script>
   </body>
 </html>
