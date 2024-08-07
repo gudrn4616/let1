@@ -38,6 +38,17 @@ app.get('/Heo', function(req, res) {
     });
 });
 
+app.get('/Mun', function(req, res) {
+    var introductionPath = path.join(__dirname, 'html/Mun.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
+    });
+});
+
 app.listen(3000, function() {
     console.log('서버가 3000번 포트에서 실행 중입니다.');
 });
