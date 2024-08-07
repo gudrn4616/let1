@@ -53,7 +53,6 @@
       overflow: hidden;
       display: flex;
       justify-content: space-between;
-      /*flex-start 을 space-between 변경해서 홈이랑 날씨정보가 양쪽으로 멀어지게 하였습니다.*/
       align-items: center;
       padding: 0 20px;
     }
@@ -83,7 +82,6 @@
       width: 400px;
     }
 
-    /*추가한 부분*/
     .weather-info {
       display: flex;
       align-items: center;
@@ -217,33 +215,35 @@
     const apiKey = '8b161e0472aad65a860b7a5f202b1359';
     const apiurl = `https://api.openweathermap.org/data/2.5/weather?lat=${Seoul_lat}&lon=${Seoul_lon}&lang=kr&units=metric&appid=${apiKey}`;
 
-    $.getJSON(apiurl, function (data) {
-      let weatherDescription = data['weather'][0]['description']; // 날씨 상태
-      const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
-      const weatherTemp = data['main']['temp']; // 온도
+    fetch(apiurl)
+      .then(response => response.json())
+      .then(data => {
+        let weatherDescription = data['weather'][0]['description']; // 날씨 상태
+        const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
+        const weatherTemp = data['main']['temp']; // 온도
 
-      let description = ['비', '아지랑이', '맑음'];
-      for (let i = 0; i < description.length; i++) {
-        if (weatherDescription.includes(description[i])) {
-          switch (description[i]) {
-            case '비': weatherDescription = '비';
-              break;
-            case '아지랑이': weatherDescription = '맑음';
-              break;
+        // 상태를 명확하게 표현하기위해 조건문 추가 계속 추가예정
+        const description = { 
+          '비': '비',
+          '아지랑이': '맑음',
+        };
+        Object.keys(description).forEach(key => {
+          if (weatherDescription.includes(key)) {
+            weatherDescription = description[key];
           }
-        }
-      }
+        });
 
-      const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-      const weatherHTML = `
-          <img src="${iconURL}" alt="Weather Icon" class="weather-icon">
-          <span>${weatherTemp}°C</span>
-          <span>&nbsp현재날씨: ${weatherDescription}</span>
-        `;
-      $('#weatherInfo').append(weatherHTML);
-    }).fail(function (error) {
-      console.log('Error:', error);
-    });
+        const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+        const weatherHTML = `
+            <img src="${iconURL}" alt="Weather Icon" class="weather-icon">
+            <span>${weatherTemp}°C</span>
+            <span>&nbsp 현재날씨 : ${weatherDescription}</span>
+          `;
+
+        // weatherInfo에 날씨 정보 추가
+        $('#weatherInfo').append(weatherHTML);
+      })
+      .catch(error => console.log('Error:', error));
   </script>
 </body>
 
