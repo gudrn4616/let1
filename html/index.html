@@ -200,15 +200,21 @@
       const apiurl = `https://api.openweathermap.org/data/2.5/weather?lat=${Seoul_lat}&lon=${Seoul_lon}&lang=kr&units=metric&appid=${apiKey}`;
 
       $.getJSON(apiurl, function(data) {
-        const weatherDescription = data['weather'][0]['description']; // 날씨 상태
+        let weatherDescription = data['weather'][0]['description']; // 날씨 상태
         const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
         const weatherTemp = data['main']['temp']; // 온도
+
+        if(weatherDescription.includes("비"))
+        {
+          weatherDescription = '비';
+        }
+
 
         const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
         const weatherHTML = `
           <img src="${iconURL}" alt="Weather Icon" class="weather-icon">
           <span>${weatherTemp}°C</span>
-          <span>${weatherDescription}</span>
+          <span>&nbsp현재상태: ${weatherDescription}</span>
         `;
         $('#weatherInfo').append(weatherHTML);
       }).fail(function(error) {
