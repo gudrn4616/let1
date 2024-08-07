@@ -205,7 +205,7 @@
       .then(data => {
         let weatherDescription = data['weather'][0]['description']; // 날씨 상태
         const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
-        const weatherTemp = data['main']['temp']; // 온도
+        const weatherTemp = Math.floor(data['main']['temp']); // 온도
 
         // 추가될 예정 명확하게 날씨 상태를 나타내기위해 조건문 추가
         const description = {
