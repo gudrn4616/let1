@@ -219,20 +219,18 @@
 
     $.getJSON(apiurl, function (data) {
       let weatherDescription = data['weather'][0]['description']; // 날씨 상태
-      let description = ['비', '아지랑이', '맑음'];
       const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
       const weatherTemp = data['main']['temp']; // 온도
 
+      let description = ['비', '아지랑이', '맑음'];
       for (let i = 0; i < description.length; i++) {
         if (weatherDescription.includes(description[i])) {
-
           switch (description[i]) {
             case '비': weatherDescription = '비';
               break;
             case '아지랑이': weatherDescription = '맑음';
               break;
           }
-
         }
       }
 
