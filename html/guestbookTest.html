@@ -221,7 +221,6 @@
                 await updateDoc(doc(db, "guestbook", id), {
                     name: newName,
                     message: newMessage,
-                    timestamp: new Date() // 수정된 시간으로 타임스탬프 업데이트
                 });
                 alert('방명록 항목이 수정되었습니다.');
                 loadEntries();
