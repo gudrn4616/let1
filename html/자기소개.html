@@ -32,7 +32,6 @@
         height: 200px;
         border-radius: 50%;
       }
-      /* 반응형 이미지 크기 조정 */
       @media (max-width: 768px) {
         img {
           width: 150px;
@@ -74,6 +73,18 @@
       .navbar a:hover {
         background-color: #ddd;
         color: black;
+      }
+      .contact-images {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-images img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
       }
     </style>
   </head>
@@ -120,14 +131,38 @@
       <!-- 연락처 섹션 -->
       <div class="section" id="contact">
         <h2>연락처</h2>
-        <p>이메일1: gudrn8293@naver.com</p>
-        <p>이메일2: gudrn4616@gmail.com</p>
-        <p>Blog: <a href="https://gudrn8293.tistory.com/" target="_blank">https://gudrn8293.tistory.com/</a></p>
-        <p>
-          GitHub:
-          <a href="https://github.com/gudrn4616" target="_blank">https://github.com/gudrn4616</a>
+        <div class="contact-images">
+          <a href="https://gudrn8293.tistory.com/" target="_blank">
+            <img
+              src="https://i.namu.wiki/i/Jz0MFNR7_7LHx1Yda0Hy6929g3BD5fWmaARdUMMFPkFIAVC_ewY7BEcoIGhepmTKRBKmSxRSUBjI7pklIZLaAA.svg"
+              class="velog"
+            />
+          </a>
+          <a href="https://github.com/gudrn4616/tomorrow" target="_blank">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              class="github"
+            />
+          </a>
+          <a>
+            <img
+              src="https://i.namu.wiki/i/mFNKOpbbejJiDdZ2D23rrqiOZ8EIIDzpayZaU5dp45NIW2KJZna-wFlfh1N0CQ_7lrU1bsUspitFFSTuOByBYw.svg"
+              alt="Click to copy email"
+              id="naverEmail"
+            />
+          </a>
+          <a>
+            <img
+              src="https://w7.pngwing.com/pngs/608/931/png-transparent-gmail-new-logo-icon.png"
+              alt="Click to copy email"
+              id="googleEmail"
+            />
+          </a>
+        </div>
+        <br />
+        <p id="notification" style="display: none">
+          메일 주소가 복사되었습니다!
         </p>
       </div>
-    </div>
   </body>
 </html>
