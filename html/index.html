@@ -14,6 +14,8 @@
       /* 카드 스타일 */
       .card {
         margin: 10px;
+        width: 18rem; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
       /* HTML과 body 스타일 */
       html, body {
@@ -82,9 +84,6 @@
         height: auto;
         width: 400px;
       }
-<<<<<<< HEAD
-      /* 반응형 디자인 */
-=======
       /*추가한 부분*/
       .weather-info {
         display: flex;
@@ -96,7 +95,6 @@
         height: 30px;
         margin-right: 5px;
       }
->>>>>>> a15f26635a4e383f0c6404347d2ea197f58fb693
       @media (max-width: 768px) {
         #cardContainer {
           flex-direction: column;
@@ -117,13 +115,10 @@
     <!-- 네비게이션 바 -->
     <nav class="navbar">
       <a class="nav-link active" aria-current="page" href="./">홈</a>
-<<<<<<< HEAD
       <a class="nav-link active" href="./guestbook">방명록</a>
-=======
       <div class="weather-info" id="weatherInfo">
         <!-- 날씨 정보가 여기 추가됩니다. -->
       </div>
->>>>>>> a15f26635a4e383f0c6404347d2ea197f58fb693
     </nav>
     <div class="container-fluid">
       <!-- 상단 섹션 -->
@@ -135,7 +130,6 @@
       </div>
       </div>
       
-      <!-- 하단 섹션 -->
       <div class="bottom-section d-flex justify-content-center align-items-center" id="cardContainer">
       </div>
     </div>
@@ -149,7 +143,7 @@
           position: "팀장",
           mbti: "ISTJ",
           hobby: "게임 서버 개발자 취직!",
-          link: "https://www.naver.com",
+          link: "/Lee",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/1-577-41-19.png",
           bloglink: "https://faree.tistory.com/"
         },
@@ -158,7 +152,7 @@
           position: "부팀장",
           mbti: "INTP",
           hobby: "기호지세",
-          link: "https://www.naver.com",
+          link: "/Lyu",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/3-107-9-482.png",
           bloglink: "https://velog.io/@rxoding/posts"
         },
@@ -167,7 +161,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "잘 참여 하겠습니다!",
-          link: "Mun.html",
+          link: "/Mun",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/8-387-55-63.png",
           bloglink: "https://velog.io/@mjs/posts"
         },
@@ -176,7 +170,7 @@
           position: "팀원",
           mbti: "INFP",
           hobby: "기초부터 차근차근!",
-          link: "Heo.html",
+          link: "/Heo",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/2-409-21-82.png",
           bloglink: "https://eerr0886.tistory.com/"
         },
@@ -185,7 +179,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "열심히 하겠습니다.",
-          link: "자기소개.html",
+          link: "/Kim",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/1-283-41-331.png",
           bloglink: "https://gudrn8293.tistory.com/" 
         }
@@ -197,7 +191,7 @@
       // 각 팀 멤버에 대한 카드 생성
       teamMembers.forEach(member => {
         const cardTemplate = `
-          <div class="card" style="width: 18rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+          <div class="card">
             <a href="${member.link}">
               <img src="${member.img}" class="card-img-top" alt="${member.name}의 이미지" />
             </a>
@@ -228,7 +222,7 @@
       .then(data => {
         let weatherDescription = data['weather'][0]['description']; // 날씨 상태
         const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
-        const weatherTemp = data['main']['temp']; // 온도
+        const weatherTemp = Math.floor(data['main']['temp']); // 온도
 
         // 추가될 예정 명확하게 날씨 상태를 나타내기위해 조건문 추가
         const description = {

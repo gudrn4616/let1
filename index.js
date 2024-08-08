@@ -32,7 +32,8 @@ db.connect((err) => {
 });
 
 // 루트 경로에 대한 GET 요청 처리
-app.get('/', (req, res)=> {
+app.get('/', (req, res) =>{
+
     var indexhtml = path.join(__dirname, 'html/index.html');
     fs.readFile(indexhtml, 'utf8', (err, data) => {
         if (err) {
@@ -43,8 +44,7 @@ app.get('/', (req, res)=> {
     });
 });
 
-// 김형구 자기소개 페이지에 대한 GET 요청 처리
-app.get('/kimhyunggu', (req, res) => {
+app.get('/Kim', (req, res) =>{
     var introductionPath = path.join(__dirname, 'html/자기소개.html');
     fs.readFile(introductionPath, 'utf8', (err, data) => {
         if (err) {
@@ -55,8 +55,9 @@ app.get('/kimhyunggu', (req, res) => {
     });
 });
 
+
 // 허석재 자기소개 페이지에 대한 GET 요청 처리
-app.get('/Heo', (req, res) => {
+app.get('/Heo', (req, res) =>{
     var introductionPath = path.join(__dirname, 'html/Heo.html');
     fs.readFile(introductionPath, 'utf8', (err, data) => {
         if (err) {
@@ -71,6 +72,10 @@ app.get('/Heo', (req, res) => {
 app.get('/guestbook', (req, res) => {
     var guestbookPath = path.join(__dirname, 'html/guestbook.html');
     fs.readFile(guestbookPath, 'utf8', (err, data) => {
+
+app.get('/Mun', (req, res) =>{
+    var introductionPath = path.join(__dirname, 'html/Mun.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
         if (err) {
             res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
         } else {
@@ -145,6 +150,29 @@ app.put('/api/guestbook/:id', (req, res) => {
 });
 
 // 서버를 3000번 포트에서 실행
-app.listen(5000, ()=> {
-    console.log('서버가 5000번 포트에서 실행 중입니다.');
+
+app.get('/Lyu', (req, res) =>{
+    var introductionPath = path.join(__dirname, 'html/Lyu.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
+    });
+}); 
+
+app.get('/Lee', (req, res) =>{
+    var introductionPath = path.join(__dirname, 'html/Lee.html');
+    fs.readFile(introductionPath, 'utf8', function(err, data) {
+        if (err) {
+            res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
+        } else {
+            res.send(data);
+        }
+    });
+}); 
+
+app.listen(3000, ( )=> {
+    console.log('서버가 3000번 포트에서 실행 중입니다.');
 });
