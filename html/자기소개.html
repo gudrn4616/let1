@@ -88,6 +88,56 @@
       }
     </style>
   </head>
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const naverEmail = document.getElementById("naverEmail");
+        const googleEmail = document.getElementById("googleEmail");
+        const notification = document.getElementById("notification");
+        const email = "neumreum0419@naver.com";
+
+        const copyToClipboard = (email) => {
+          if (navigator.clipboard) {
+            navigator.clipboard
+              .writeText(email)
+              .then(() => {
+                // 복사가 성공하면 알림을 표시
+                notification.style.display = "block";
+                setTimeout(() => {
+                  notification.style.display = "none";
+                }, 2000); // 2초 후에 알림을 숨김
+              })
+              .catch((err) => {
+                alert("메일 복사에 실패하였습니다.", err);
+              });
+          } else {
+            // 폴백 방법: 임시 텍스트 영역을 사용하여 클립보드에 복사
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+              document.execCommand("copy");
+              notification.style.display = "block";
+              setTimeout(() => {
+                notification.style.display = "none";
+              }, 2000); // 2초 후에 알림을 숨김
+            } catch (err) {
+              alert("메일 복사에 실패하였습니다.", err);
+            }
+            document.body.removeChild(textArea);
+          }
+        };
+
+        naverEmail.addEventListener("click", () => {
+          copyToClipboard("gudrn8293@naver.com");
+        });
+
+        googleEmail.addEventListener("click", () => {
+          copyToClipboard("gudrn4616@gmail.com");
+        });
+      });
+    </script>
+  </head>
   <body>
     <nav class="navbar">
       <a class="nav-link active" aria-current="page" href="./">홈</a>
