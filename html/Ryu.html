@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>류재준의 자기소개</title>
+    <style>
+      body {
+        font-family: "Nanum Gothic", sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+      @media (max-width: 768px) {
+        img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+      @media (max-width: 480px) {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      .section {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+      .section h2 {
+        color: #2c3e50;
+      }
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 20px;
+      }
+      .navbar a {
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .contact-images {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-images img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+    </style>
+
+    <!--메일 클릭시 복사-->
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const naverEmail = document.getElementById("naverEmail");
+        const googleEmail = document.getElementById("googleEmail");
+        const notification = document.getElementById("notification");
+        const email = "neumreum0419@naver.com";
+
+        const copyToClipboard = (email) => {
+          navigator.clipboard
+            .writeText(email)
+            .then(() => {
+              // 복사가 성공하면 알림을 표시
+              notification.style.display = "block";
+              setTimeout(() => {
+                notification.style.display = "none";
+              }, 2000); // 2초 후에 알림을 숨김
+            })
+            .catch((err) => {
+              console.log("메일 복사에 실패하였습니다.", err);
+            });
+        };
+
+        naverEmail.addEventListener("click", () => {
+          copyToClipboard("neumreum0419@naver.com");
+        });
+
+        googleEmail.addEventListener("click", () => {
+          copyToClipboard("neumreum0419@gmail.com");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="nav-link active" aria-current="page" href="./">홈</a>
+    </nav>
+    <div class="container">
+      <h1>류재준의 자기소개</h1>
+      <img
+        src="https://cdn-static.zep.us/static/assets/baked-avartar-images/8-387-55-63.png"
+        alt="프로필 사진"
+      />
+
+      <div class="section" id="info">
+        <h2>기본 정보</h2>
+        <p>이름: 류재준</p>
+        <p>직급: 부팀장</p>
+        <p>MBTI: INTP</p>
+      </div>
+
+      <div class="section" id="intro">
+        <h2>자기소개</h2>
+        <p>
+          안녕하십니까 이번 Node.js 6기에 참여한 류재준입니다. 이번 캠프를
+          계기로 개발자로써의 역량을 향상시켜서 취업하는 하는걸 목표로 하고
+          있습니다. 다들 잘 부탁드립니다.
+        </p>
+      </div>
+
+      <div class="section" id="hobby">
+        <h2>취미</h2>
+        <p>
+          축구를 좋아하여 보는거 하는걸 다 좋아합니다. 축구는 잘하진 못하지만
+          친구들과 즐겨하는 편이고 피파도 종종 합니다. 종종 답답할때면 새벽에
+          한강에서 자전거타는것도 좋아합니다.
+        </p>
+      </div>
+
+      <div class="section" id="contact">
+        <h2>연락처</h2>
+        <div class="contact-images">
+          <a href="https://velog.io/@rxoding/posts" target="_blank">
+            <img
+              src="https://images.velog.io/images/velog/profile/9aa07f66-5fcd-41f4-84f2-91d73afcec28/green%20favicon.png"
+              class="velog"
+            />
+          </a>
+          <a href="https://github.com/Rxoding" target="_blank">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              class="github"
+            />
+          </a>
+          <a>
+            <img
+              src="https://i.namu.wiki/i/mFNKOpbbejJiDdZ2D23rrqiOZ8EIIDzpayZaU5dp45NIW2KJZna-wFlfh1N0CQ_7lrU1bsUspitFFSTuOByBYw.svg"
+              alt="Click to copy email"
+              id="naverEmail"
+            />
+          </a>
+          <a>
+            <img
+              src="https://w7.pngwing.com/pngs/608/931/png-transparent-gmail-new-logo-icon.png"
+              alt="Click to copy email"
+              id="googleEmail"
+            />
+          </a>
+        </div>
+        <br />
+        <p id="notification" style="display: none">
+          메일 주소가 복사되었습니다!
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
