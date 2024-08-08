@@ -32,7 +32,6 @@
         height: 200px;
         border-radius: 50%;
       }
-      /* 반응형 이미지 크기 조정 */
       @media (max-width: 768px) {
         img {
           width: 150px;
@@ -75,7 +74,67 @@
         background-color: #ddd;
         color: black;
       }
+      .contact-images {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-images img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const naverEmail = document.getElementById("naverEmail");
+        const googleEmail = document.getElementById("googleEmail");
+        const notification = document.getElementById("notification");
+
+        const copyToClipboard = (email) => {
+          if (navigator.clipboard) {
+            navigator.clipboard
+              .writeText(email)
+              .then(() => {
+                // 복사가 성공하면 알림을 표시
+                notification.style.display = "block";
+                setTimeout(() => {
+                  notification.style.display = "none";
+                }, 2000); // 2초 후에 알림을 숨김
+              })
+              .catch((err) => {
+                alert("메일 복사에 실패하였습니다.", err);
+              });
+          } else {
+            // 폴백 방법: 임시 텍스트 영역을 사용하여 클립보드에 복사
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+              document.execCommand("copy");
+              notification.style.display = "block";
+              setTimeout(() => {
+                notification.style.display = "none";
+              }, 2000); // 2초 후에 알림을 숨김
+            } catch (err) {
+              alert("메일 복사에 실패하였습니다.", err);
+            }
+            document.body.removeChild(textArea);
+          }
+        };
+
+        naverEmail.addEventListener("click", () => {
+          copyToClipboard("answlstn135@naver.com");
+        });
+
+        googleEmail.addEventListener("click", () => {
+          copyToClipboard("answlstn13@gmail.com");
+        });
+      });
+    </script>
   </head>
   <body>
     <nav class="navbar">
@@ -89,6 +148,7 @@
         alt="프로필 사진"
       />
 
+      <!-- 기본 정보 섹션 -->
       <div class="section" id="info">
         <h2>기본 정보</h2>
         <p>이름: 문진수</p>
@@ -96,36 +156,70 @@
         <p>MBTI: ISTP</p>
       </div>
 
+      <!-- 자기소개 섹션 -->
       <div class="section" id="intro">
         <h2>자기소개</h2>
         <p>
-            안녕하십니까 이번 Node.js 6기에 참여한 문진수라고 합니다.
-            개발경험은 전에 Unity로 국비교육을 받았었습니다. 교육후 취업준비를 하던 중 생각보다 취업이 잘 안풀렸었습니다.
-            그러다 우연히 광고를 보고 기회다 싶어 고민하다 일단 "해보자! 움직이자!" 생각으로 참여하게 되었습니다.
-            이번이 마지막이란 생각으로 깔끔하게 수료하고 취업까지를 목표로 하고 있습니다.
-            다들 원하시는 목표에 가까워질수 있게 다같이 화이팅하면 좋겠습니다~~!
+          안녕하십니까 이번 Node.js 6기에 참여한 문진수라고 합니다.
+          개발경험은 전에 Unity로 국비교육을 받았었습니다. 교육후 취업준비를 하던 중 생각보다 취업이 잘 안풀렸었습니다.
+          그러다 우연히 광고를 보고 기회다 싶어 고민하다 일단 "해보자! 움직이자!" 생각으로 참여하게 되었습니다.
+          이번이 마지막이란 생각으로 깔끔하게 수료하고 취업까지를 목표로 하고 있습니다.
+          다들 원하시는 목표에 가까워질수 있게 다같이 화이팅하면 좋겠습니다~~!
         </p>
       </div>
 
+      <!-- 취미 섹션 -->
       <div class="section" id="hobby">
         <h2>취미</h2>
         <p>
-            취미는 게임 좋아합니다 친구들이랑 가볍게 얘기하면서 하는것 좋아합니다.<br>
-            주로 롤, 피파 가끔 갯앰프드 카트라이더 등 합니다. <br>
-            혼자서 할때는 로그라이크게임이랑 턴제게임 즐겨합니다.<br>
-            요즘은 헬스도 할려고 하는 편입니다. 하고나면 스트레스가 많이 풀리는 것 같습니다.<br>
-            추가로 가끔 농구도 즐겨합니다.
+          취미는 게임 좋아합니다 친구들이랑 가볍게 얘기하면서 하는것 좋아합니다.<br>
+          주로 롤, 피파 가끔 갯앰프드 카트라이더 등 합니다. <br>
+          혼자서 할때는 로그라이크게임이랑 턴제게임 즐겨합니다.<br>
+          요즘은 헬스도 할려고 하는 편입니다. 하고나면 스트레스가 많이 풀리는 것 같습니다.<br>
+          추가로 가끔 농구도 즐겨합니다.
         </p>
       </div>
 
+      <!-- 연락처 섹션 -->
       <div class="section" id="contact">
         <h2>연락처</h2>
-        <p>이메일1: answlstn135@naver.com</p>
-        <p>이메일2: answlstn13@gmail.com</p>
-        <p>Blog: <a href="https://velog.io/@mjs/posts" target="_blank">https://velog.io/@mjs/posts</a></p> <!-- target="_blank" 코드 추가해서 새창을 열고 접속하게 했습니다. -->
-        <p>GitHub:<a href="https://github.com/Moonb7" target="_blank">https://github.com/Moonb7</a></p>
-        <p>Unity국비하면서 만들었던 포트폴리오입니다. 재미로 봐주시면 감사하겠습니다.
-            <a href="https://youtu.be/AlRNG7cYZVo?feature=shared" target="_blank">https://youtu.be/AlRNG7cYZVo?feature=shared</a>
+        <div class="contact-images">
+          <a href="https://velog.io/@mjs/posts" target="_blank">
+            <img
+              src="https://images.velog.io/images/velog/profile/9aa07f66-5fcd-41f4-84f2-91d73afcec28/green%20favicon.png"
+              class="velog"
+            />
+          </a>
+          <a href="https://github.com/Moonb7" target="_blank">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              class="github"
+            />
+          </a>
+          <a href="https://youtu.be/AlRNG7cYZVo?feature=shared" target="_blank">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2504/2504848.png"
+              class="yotube"
+            />
+          </a>
+          <a>
+            <img
+              src="https://i.namu.wiki/i/mFNKOpbbejJiDdZ2D23rrqiOZ8EIIDzpayZaU5dp45NIW2KJZna-wFlfh1N0CQ_7lrU1bsUspitFFSTuOByBYw.svg"
+              alt="Click to copy email"
+              id="naverEmail"
+            />
+          </a>
+          <a>
+            <img
+              src="https://w7.pngwing.com/pngs/608/931/png-transparent-gmail-new-logo-icon.png"
+              alt="Click to copy email"
+              id="googleEmail"
+            />
+          </a>
+        </div>
+        <br />
+        <p id="notification" style="display: none">
+          메일 주소가 복사되었습니다!
         </p>
       </div>
     </div>
