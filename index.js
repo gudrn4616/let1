@@ -76,7 +76,7 @@ app.get('/Mun', (req, res) => {
 });
 // 류재준 자기소개 페이지에 대한 GET 요청 처리
 app.get('/Ryu', (req, res) => {
-    const introductionPath = path.join(__dirname, 'html/Lyu.html');
+    const introductionPath = path.join(__dirname, 'html/Ryu.html');
     fs.readFile(introductionPath, 'utf8', (err, data) => {
         if (err) {
             res.status(500).send('파일을 읽는 중 오류가 발생했습니다.');
