@@ -75,7 +75,7 @@ app.get('/Mun', (req, res) => {
     });
 });
 // 류재준 자기소개 페이지에 대한 GET 요청 처리
-app.get('/Lyu', (req, res) => {
+app.get('/Ryu', (req, res) => {
     const introductionPath = path.join(__dirname, 'html/Lyu.html');
     fs.readFile(introductionPath, 'utf8', (err, data) => {
         if (err) {
