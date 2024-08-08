@@ -46,9 +46,14 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100px; /* 버튼 너비 설정 */
         }
         button:hover {
             background-color: #555;
+        }
+        #submit {
+            width: 150px; /* 제출 버튼 너비 설정 */
+            margin-top: 10px;
         }
         #guestbook-entries {
             margin-top: 20px;
@@ -85,7 +90,8 @@
         }
         #delete-edit-buttons {
             display: flex;
-            justify-content: right;
+            justify-content: flex-end;
+            gap: 10px; /* 버튼 간격 설정 */
             margin-top: 10px;
         }
         #delete-button {
@@ -111,8 +117,8 @@
     </div>
     <div class="container">
         <h1>방명록</h1>
-        <!-- 방명록 폼 -->
-        <form id="guestbook-form">
+        <!-- form을 div로 변경 -->
+        <div id="guestbook">
             <div>
                 <label for="name">이름:</label>
                 <input type="text" id="name" name="name" required>
@@ -121,8 +127,8 @@
                 <label for="message">메시지:</label>
                 <textarea id="message" name="message" required></textarea>
             </div>
-            <button type="submit">제출</button>
-        </form>
+            <button id="submit">제출</button>
+        </div>
         <div id="guestbook-entries">
             <h2>방명록 항목</h2>
             <ul id="entries-list">
@@ -130,7 +136,111 @@
             </ul>
         </div>
     </div>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsW3OcOst5XW7uj0zURYXk1xpPOSyWAjs",
+            authDomain: "team-introduction-project.firebaseapp.com",
+            projectId: "team-introduction-project",
+            storageBucket: "team-introduction-project.appspot.com",
+            messagingSenderId: "605481305770",
+            appId: "1:605481305770:web:e41f75c0f952528e0772d3",
+            measurementId: "G-LJQZNSJV5R"
+        };
+        
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 방명록 항목 추가 함수
+        async function addEntry() {
+            const name = $('#name').val();
+            const message = $('#message').val();
+            await addDoc(collection(db, "guestbook"), { name, message, timestamp: new Date() }); // 타임스탬프 추가
+            alert('방명록이 추가되었습니다.');
+            $('#name').val('');
+            $('#message').val('');
+            loadEntries();
+        }
+
+        // 방명록 항목 로드 함수
+        async function loadEntries() {
+            const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc")); // 타임스탬프 기준으로 최근에 등록된 데이터 순서대로 정렬
+            const querySnapshot = await getDocs(q);
+            const entriesList = $('#entries-list');
+            entriesList.empty(); // 기존 항목을 모두 지웁니다.
+            querySnapshot.forEach((doc) => {
+                const entry = doc.data();
+                const id = doc.id;
+                const entryHtml = `
+                    <li class="entry">
+                        <div class="entry-box">
+                            <strong>${entry.name}</strong><p>${entry.message}</p>
+                        </div>
+                        <div id="delete-edit-buttons">
+                            <button class="delete-button" data-id="${id}">삭제</button>
+                            <button class="edit-button" data-id="${id}" data-name="${entry.name}" data-message="${entry.message}">수정</button>
+                        </div>
+                    </li>
+                `;
+                entriesList.append(entryHtml);
+            });
+
+            // 삭제 버튼 클릭 이벤트 핸들러 등록
+            $('.delete-button').click(async function() {
+                const id = $(this).data('id');
+                await deleteEntry(id);
+            });
+
+            // 수정 버튼 클릭 이벤트 핸들러 등록
+            $('.edit-button').click(async function() {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const message = $(this).data('message');
+                await editEntry(id, name, message);
+            });
+        }
+
+        // 방명록 항목 삭제 함수
+        async function deleteEntry(id) {
+            await deleteDoc(doc(db, "guestbook", id));
+            alert('방명록 항목이 삭제되었습니다.');
+            loadEntries();
+        }
+
+        // 방명록 항목 수정 함수
+        async function editEntry(id, name, message) {
+            const newName = prompt('새 이름을 입력하세요:', name);
+            const newMessage = prompt('새 메시지를 입력하세요:', message);
+            if (newName && newMessage) {
+                await updateDoc(doc(db, "guestbook", id), {
+                    name: newName,
+                    message: newMessage,
+                    timestamp: new Date() // 수정된 시간으로 타임스탬프 업데이트
+                });
+                alert('방명록 항목이 수정되었습니다.');
+                loadEntries();
+            }
+        }
+
+        // 페이지가 로드될 때 방명록 항목을 로드합니다.
+        $(document).ready(function() {
+            loadEntries();
+            // 제출 버튼 클릭 시 addEntry 함수 실행
+            $('#submit').click(async function() {
+                if($('#name').val() && $('#message').val()) await addEntry();                    
+                else alert('이름과 메시지를 입력해주세요');
+            });
+        });
+
+        
+
+        /* 잠시 node랑 db를 잘모르니 접어두기
         // 폼 제출 이벤트 리스너 추가
         document.getElementById('guestbook-form').addEventListener('submit', (event) => {
             event.preventDefault();
@@ -210,9 +320,9 @@
                 .catch(error => console.error('Error:', error));
             }
         }
-
         // DOMContentLoaded 이벤트 리스너 추가
         document.addEventListener('DOMContentLoaded', loadEntries);
+        */
     </script>
 </body>
 </html>

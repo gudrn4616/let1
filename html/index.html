@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>팀 소개</title>
+    <title>코드뭉텡이</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,6 +14,8 @@
       /* 카드 스타일 */
       .card {
         margin: 10px;
+        width: 18rem; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
       /* HTML과 body 스타일 */
       html, body {
@@ -55,9 +57,12 @@
         background-color: #333;
         overflow: hidden;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between; /*flex-start 을 space-between 변경해서 홈이랑 날씨정보가 양쪽으로 멀어지게 하였습니다.*/
         align-items: center;
         padding: 0 20px;
+      }
+      .navbar .nav-links {
+        display: flex;
       }
       .navbar a {
         color: #f2f2f2;
@@ -82,7 +87,17 @@
         height: auto;
         width: 400px;
       }
-      /* 반응형 디자인 */
+      /*추가한 부분*/
+      .weather-info {
+        display: flex;
+        align-items: center;
+        color: #f2f2f2;
+      }
+      .weather-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
       @media (max-width: 768px) {
         #cardContainer {
           flex-direction: column;
@@ -102,24 +117,27 @@
   <body>
     <!-- 네비게이션 바 -->
     <nav class="navbar">
-      <a class="nav-link active" aria-current="page" href="./">홈</a>
-      <a class="nav-link active" href="./guestbook">방명록</a>
+      <div class="nav-links">
+        <a class="nav-link active" aria-current="page" href="./">홈</a>
+        <a class="nav-link active" href="./guestbook">방명록</a>
+      </div>
+      <div class="weather-info" id="weatherInfo"></div>
     </nav>
     <div class="container-fluid">
       <!-- 상단 섹션 -->
       <div class="top-section">
         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js 로고" class="nodejs-logo">
         <div class="intro-text">
-        <h2>안녕하세요, 저희 팀을 소개합니다!</h2>
-        <p>우리는 열정적이고 창의적인 개발자들로 구성된 팀입니다. 함께 성장하고 혁신적인 솔루션을 만들어가고 있습니다.</p>
+        <h2>안녕하세요, 코드뭉텡이를 소개합니다!</h2>
+        <p>저희는 열정적이고 창의적인 개발자들로 구성된 팀입니다.<br>저희는 함께 성장하며 더욱 더 혁신적인 솔루션을 만들어 나가고 있습니다.</p>
       </div>
       </div>
       
-      <!-- 하단 섹션 -->
       <div class="bottom-section d-flex justify-content-center align-items-center" id="cardContainer">
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       // 팀 멤버 정보 배열
       const teamMembers = [
@@ -128,7 +146,7 @@
           position: "팀장",
           mbti: "ISTJ",
           hobby: "게임 서버 개발자 취직!",
-          link: "https://www.naver.com",
+          link: "/Lee",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/1-577-41-19.png",
           bloglink: "https://faree.tistory.com/"
         },
@@ -137,7 +155,7 @@
           position: "부팀장",
           mbti: "INTP",
           hobby: "기호지세",
-          link: "https://www.naver.com",
+          link: "/Lyu",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/3-107-9-482.png",
           bloglink: "https://velog.io/@rxoding/posts"
         },
@@ -146,7 +164,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "잘 참여 하겠습니다!",
-          link: "https://velog.io/@mjs/안녕하세요-저를-소개하겠습니다",
+          link: "/Mun",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/8-387-55-63.png",
           bloglink: "https://velog.io/@mjs/posts"
         },
@@ -155,7 +173,7 @@
           position: "팀원",
           mbti: "INFP",
           hobby: "기초부터 차근차근!",
-          link: "./Heo",
+          link: "/Heo",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/2-409-21-82.png",
           bloglink: "https://eerr0886.tistory.com/"
         },
@@ -164,7 +182,7 @@
           position: "팀원",
           mbti: "ISTP",
           hobby: "열심히 하겠습니다.",
-          link: "./kimhyunggu",
+          link: "/Kim",
           img: "https://cdn-static.zep.us/static/assets/baked-avartar-images/1-283-41-331.png",
           bloglink: "https://gudrn8293.tistory.com/" 
         }
@@ -176,7 +194,7 @@
       // 각 팀 멤버에 대한 카드 생성
       teamMembers.forEach(member => {
         const cardTemplate = `
-          <div class="card" style="width: 18rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+          <div class="card">
             <a href="${member.link}">
               <img src="${member.img}" class="card-img-top" alt="${member.name}의 이미지" />
             </a>
@@ -195,6 +213,41 @@
         // 카드 컨테이너에 카드 추가
         cardContainer.appendChild(card);
       });
+
+      // 날씨 정보를 가져오는 부분 추가
+      const Seoul_lat = '37.715133';
+      const Seoul_lon = '127.269311';
+      const apiKey = '8b161e0472aad65a860b7a5f202b1359';
+      const apiurl = `https://api.openweathermap.org/data/2.5/weather?lat=${Seoul_lat}&lon=${Seoul_lon}&lang=kr&units=metric&appid=${apiKey}`;
+
+      fetch(apiurl)
+      .then(response => response.json())
+      .then(data => {
+        let weatherDescription = data['weather'][0]['description']; // 날씨 상태
+        const weatherIcon = data['weather'][0]['icon']; // 날씨 아이콘
+        const weatherTemp = Math.floor(data['main']['temp']); // 온도
+
+        // 추가될 예정 명확하게 날씨 상태를 나타내기위해 조건문 추가
+        const description = {
+          '비': '비',
+          '아지랑이': '맑음',
+          '구름': '구름낀 하늘'
+        };
+        Object.keys(description).forEach(key => {
+          if (weatherDescription.includes(key)) {
+            weatherDescription = description[key];
+          }
+        });
+
+        const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+        const weatherHTML = `
+          <img src="${iconURL}" alt="Weather Icon" class="weather-icon">
+          <span>${weatherTemp}°C</span>
+          <span>&nbsp현재날씨 : ${weatherDescription}</span>
+        `;
+
+        $('#weatherInfo').append(weatherHTML);
+      }).catch(error => console.log('날씨정보Error:', error));
     </script>
   </body>
 </html>
